@@ -46,7 +46,7 @@ export default function ChromaticText({ mousePosition }: ChromaticTextProps) {
           {characters.map((char, index) => (
             <span
               key={index}
-              className="text-8xl md:text-9xl font-bold mx-1 cursor-pointer select-none inline-block hover:scale-105 transition-transform duration-200"
+              className="text-8xl md:text-9xl font-bold mx-1 cursor-pointer select-none inline-block  transition-transform duration-200"
               style={{
                 color: "#a9a9a9",
               }}
