@@ -26,63 +26,36 @@ export default function ChromaticText({ mousePosition }: ChromaticTextProps) {
     }
   }, [isLoading]);
 
-  // Animation variants for each character
-  const characterVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.5,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94], // Custom easing
-      },
-    },
-  };
-
-  // Container variants to orchestrate the sequence
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15, // Delay between each character
-        delayChildren: 0.2, // Initial delay before starting
-      },
-    },
-  };
-
   return (
     <div className="flex items-center justify-center h-screen relative">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={shouldStartTextAnimation ? "visible" : "hidden"}
-        className="flex"
-        style={{
-          fontFamily: "Orborn, sans-serif",
-        }}
-      >
-        {characters.map((char, index) => (
-          <motion.span
-            key={index}
-            variants={characterVariants}
-            className="text-8xl md:text-9xl font-bold cursor-pointer select-none inline-block"
-            style={{
-              color: "#9d8566",
-            }}
-            whileHover={{
-              scale: 1,
-              transition: { duration: 0.2 },
-            }}
-          >
-            {char}
-          </motion.span>
-        ))}
-      </motion.div>
+      {/* Container with hidden overflow to create the "invisible box" effect */}
+      <div className="overflow-hidden">
+        <motion.div
+          initial={{ y: 120 }} // Start from below
+          animate={shouldStartTextAnimation ? { y: 0 } : { y: 120 }}
+          transition={{
+            duration: 1.2,
+            ease: [0.16, 1, 0.3, 1], // Organic, smooth easing
+            delay: 0.2,
+          }}
+          className="flex"
+          style={{
+            fontFamily: "Orborn, sans-serif",
+          }}
+        >
+          {characters.map((char, index) => (
+            <span
+              key={index}
+              className="text-8xl md:text-9xl font-bold mx-1 cursor-pointer select-none inline-block hover:scale-105 transition-transform duration-200"
+              style={{
+                color: "#a9a9a9",
+              }}
+            >
+              {char}
+            </span>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 }
