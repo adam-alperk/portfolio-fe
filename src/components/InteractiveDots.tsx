@@ -12,7 +12,7 @@ const DotMaterial = shaderMaterial(
     uMousePos: new THREE.Vector2(0.5, 0.5),
     uRadius: 90.0,
     uBaseColor: new THREE.Color("#818181"),
-    uActiveColor: new THREE.Color("#3b82f6"),
+    uActiveColor: new THREE.Color("#D89CFF"),
     uViewportSize: new THREE.Vector2(1920, 1080),
     uTime: 0,
   },
@@ -183,9 +183,9 @@ export default function InteractiveDots({
       <dotMaterial
         ref={materialRef}
         transparent
-        uRadius={850.0} // Radius in pixels
+        uRadius={650.0} // Radius in pixels
         uBaseColor={new THREE.Color("#818181")}
-        uActiveColor={new THREE.Color("#3b82f6")}
+        uActiveColor={new THREE.Color("#9b00ff")}
       />
     </instancedMesh>
   );
