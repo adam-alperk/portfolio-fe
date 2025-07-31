@@ -35,21 +35,6 @@ function HomeContent() {
         <div className="absolute inset-0 z-50">
           <ChromaticText mousePosition={mousePosition} />
         </div>
-
-        {/* Content overlay */}
-        <section className="h-screen flex items-end pb-16 relative z-40 pointer-events-none">
-          <div className="w-full max-w-6xl mx-auto px-4">
-            <div className="space-y-4 max-w-md pointer-events-auto">
-              <h2 className="text-xl font-poppins font-medium text-neutral-500 dark:text-neutral-400">
-                Full Stack Developer, Sound Designer & 3D Artist
-              </h2>
-              <p className="text-base font-poppins font-normal text-neutral-600 dark:text-neutral-300 opacity-75 leading-relaxed">
-                Creating immersive digital experiences through code, sound, and
-                visual artistry.
-              </p>
-            </div>
-          </div>
-        </section>
       </div>
     </AnimatedLayout>
   );

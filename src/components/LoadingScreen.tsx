@@ -99,7 +99,7 @@ export default function LoadingScreen({
     >
       <div className="relative">
         {/* Loading container */}
-        <div className="relative w-80 h-20 border-2 border-accent/30 rounded-lg overflow-hidden">
+        <div className="relative w-80 h-20 border-2 border-accent rounded-lg overflow-hidden">
           {/* Background fill that acts as the loading bar */}
           <div
             className="absolute inset-0 bg-accent transition-all duration-75 ease-out"
@@ -108,22 +108,23 @@ export default function LoadingScreen({
             }}
           />
 
-          {/* Text container with mask effect */}
+          {/* Text container */}
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Base text (unfilled) */}
             <div
-              className="absolute text-4xl font-normal text-accent/40 select-none"
+              className="absolute text-4xl font-normal text-accent select-none"
               style={{ fontFamily: "Orborn, sans-serif" }}
             >
               loading
             </div>
 
-            {/* Masked text (filled) - only shows where the progress bar has filled */}
+            {/* Masked text (filled) using CSS mask */}
             <div
-              className="absolute text-4xl font-normal text-background select-none transition-all duration-75 ease-out"
+              className="w-80 absolute text-4xl text-center font-normal text-background select-none transition-all duration-75 ease-out"
               style={{
                 fontFamily: "Orborn, sans-serif",
-                clipPath: `inset(0 ${Math.max(0, 100 - displayProgress)}% 0 0)`,
+                maskImage: `linear-gradient(to right, black ${displayProgress}%, transparent ${displayProgress}%)`,
+                WebkitMaskImage: `linear-gradient(to right, black ${displayProgress}%, transparent ${displayProgress}%)`,
               }}
             >
               loading
@@ -136,7 +137,7 @@ export default function LoadingScreen({
           className="mt-4 text-center"
           style={{ fontFamily: "Orborn, sans-serif" }}
         >
-          <span className="text-sm text-muted font-mono">
+          <span className="text-md text-accent font-mono">
             {Math.round(displayProgress)}%
           </span>
         </div>
