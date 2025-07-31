@@ -10,7 +10,7 @@ export default function Text3DComponent({
 }: Text3DComponentProps) {
   return (
     <>
-      {/* Animated sphere in the 3D scene */}
+      {/* Always render the animated sphere so it can load and track progress */}
       <AnimatedSphere />
     </>
   );

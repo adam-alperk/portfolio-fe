@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Group, LoopRepeat } from "three";
@@ -7,9 +7,11 @@ import { useLoading } from "./LoadingContext";
 
 export default function AnimatedSphere() {
   const group = useRef<Group>(null);
-  const { updateProgress, setLoading } = useLoading();
+  const { updateProgress, isLoading } = useLoading();
+  const [opacity, setOpacity] = useState(0);
+  const [shouldStartFade, setShouldStartFade] = useState(false);
 
-  // Load the glTF model with progress tracking
+  // Load the glTF model with progress tracking (always load, regardless of loading state)
   const { scene, animations } = useGLTF("/3d/port2.glb", true);
 
   // Set up animations
@@ -32,6 +34,40 @@ export default function AnimatedSphere() {
       return () => clearInterval(interval);
     }
   }, [scene, updateProgress]);
+
+  // Start fade-in animation when loading completes
+  useEffect(() => {
+    if (!isLoading) {
+      // Small delay to ensure loading screen has started fading
+      const timer = setTimeout(() => {
+        setShouldStartFade(true);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
+
+  // Animate opacity when fade should start
+  useEffect(() => {
+    if (shouldStartFade) {
+      const startTime = Date.now();
+      const duration = 1000; // 1 second fade-in
+
+      const animate = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Smooth easing function (ease-out)
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        setOpacity(easedProgress);
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
+  }, [shouldStartFade]);
 
   // Start the animation when component mounts
   useEffect(() => {
@@ -56,6 +92,13 @@ export default function AnimatedSphere() {
 
     if (group.current) {
       group.current.rotation.y += delta * 0;
+      // Apply opacity to all materials in the scene
+      group.current.traverse((child) => {
+        if ((child as any).material) {
+          (child as any).material.transparent = true;
+          (child as any).material.opacity = opacity;
+        }
+      });
     }
   });
 
