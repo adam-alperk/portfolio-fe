@@ -85,7 +85,7 @@ const DotMaterial = shaderMaterial(
         finalColor += vColor * glowIntensity;
         
         // Add emissive glow with blue tint
-        finalColor += vec3(0.2, 0.4, 1.0) * vGlow * 8;
+        finalColor += vec3(0.2, 0.4, 1.0) * vGlow * 1.0;
         
         // Add subtle breathing effect to glowing dots
         float breathe = sin(uTime * 2.0) * 0.15 + 1.0;
@@ -183,7 +183,7 @@ export default function InteractiveDots({
       <dotMaterial
         ref={materialRef}
         transparent
-        uRadius={250.0} // Radius in pixels
+        uRadius={850.0} // Radius in pixels
         uBaseColor={new THREE.Color("#818181")}
         uActiveColor={new THREE.Color("#3b82f6")}
       />
