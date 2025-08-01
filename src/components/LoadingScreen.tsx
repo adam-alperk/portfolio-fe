@@ -99,7 +99,7 @@ export default function LoadingScreen({
     >
       <div className="relative">
         {/* Loading container */}
-        <div className="relative w-80 h-20 border-2 border-accent rounded-lg overflow-hidden">
+        <div className="relative w-80 h-20 border-2 border-header rounded-lg overflow-hidden">
           {/* Background fill that acts as the loading bar */}
           <div
             className="absolute inset-0 bg-accent transition-all duration-75 ease-out"
@@ -112,7 +112,7 @@ export default function LoadingScreen({
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Base text (unfilled) */}
             <div
-              className="absolute text-4xl font-normal text-accent select-none"
+              className="absolute text-4xl font-normal text-header select-none"
               style={{ fontFamily: "Orborn, sans-serif" }}
             >
               loading
@@ -137,7 +137,7 @@ export default function LoadingScreen({
           className="mt-4 text-center"
           style={{ fontFamily: "Orborn, sans-serif" }}
         >
-          <span className="text-md text-accent font-mono">
+          <span className="text-md text-header font-mono">
             {Math.round(displayProgress)}%
           </span>
         </div>
