@@ -4,6 +4,7 @@ import InteractiveScene from "./InteractiveScene";
 import ChromaticText from "./ChromaticText";
 import AnimatedLayout from "./AnimatedLayout";
 import LoadingScreen from "./LoadingScreen";
+import HeroButtons from "./HeroButtons";
 import { LoadingProvider, useLoading } from "./LoadingContext";
 
 function HomeContent() {
@@ -35,6 +36,9 @@ function HomeContent() {
         <div className="absolute inset-0 z-50">
           <ChromaticText mousePosition={mousePosition} />
         </div>
+
+        {/* Hero Buttons */}
+        <HeroButtons />
       </div>
     </AnimatedLayout>
   );
