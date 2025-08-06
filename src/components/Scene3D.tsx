@@ -189,7 +189,7 @@ export default function Scene3D({ children }: Scene3DProps) {
     >
       <Suspense fallback={null}>
         {/* Custom lighting setup instead of Environment */}
-        <ambientLight intensity={0.7} color="#d1ecff" />
+        <ambientLight intensity={1.2} color="#d1ecff" />
         <directionalLight
           position={[10, 10, 5]}
           intensity={1.6}
@@ -201,7 +201,18 @@ export default function Scene3D({ children }: Scene3DProps) {
           intensity={1.2}
           color="#ffffff"
         />
-        <pointLight position={[0, 10, 0]} intensity={2} color="#d1ecff" />
+        <pointLight position={[0, 10, 0]} intensity={9} color="#d1ecff" />
+
+        <directionalLight
+          position={[0, -15, -19]}
+          intensity={1}
+          color="#af69ff"
+        />
+        <directionalLight
+          position={[0, 10, -12]}
+          intensity={1.5}
+          color="#af69ff"
+        />
 
         {/* Background plane with circular gradient */}
         <Plane args={[100, 100]} position={[0, 0, -40]} rotation={[0, 0, 0]}>

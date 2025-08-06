@@ -23,9 +23,9 @@ export default function GlassButton({
 }: GlassButtonProps) {
   const baseClasses = `
     relative overflow-hidden
-    backdrop-blur-[2px]
+    backdrop-blur-[6px]
     border border-white/10
-    rounded-lg
+    rounded-xl
     transition-all duration-300 ease-out
     cursor-pointer
     select-none
@@ -42,10 +42,12 @@ export default function GlassButton({
   const variantClasses = {
     primary: `
       bg-white/1 
-      text-white 
-      shadow-lg shadow-black/10
-      hover:shadow-xl hover:shadow-black/10
+      text-accent 
+      shadow-lg shadow-black/30
+      hover:shadow-xl hover:shadow-black/30
       hover:border-white/10
+      duration-300
+      ease-in-out
     `,
     secondary: `
       bg-accent/10 

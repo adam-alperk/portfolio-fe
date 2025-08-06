@@ -48,7 +48,7 @@ export default function ChromaticText({ mousePosition }: ChromaticTextProps) {
               key={index}
               className="text-8xl md:text-9xl font-bold mx-1 cursor-pointer select-none inline-block  transition-transform duration-200"
               style={{
-                color: "#a9a9a9",
+                color: "#b7b7b7",
               }}
             >
               {char}
